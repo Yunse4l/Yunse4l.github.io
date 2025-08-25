@@ -11,7 +11,7 @@ body {
 
 .ocean {
   position: relative;
-  min-height: 53vh;
+  min-height: 48vh;
   width: 100%;
   overflow: hidden;
 }
@@ -96,7 +96,7 @@ nav a {
 }
 
 .search-section {
-  padding-top: 380px;
+  padding-top: 340px;
   display: flex;
   justify-content: center;
   opacity: 0.5;
@@ -146,7 +146,6 @@ nav a {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
-/* 카드 */
 .post-card {
   background: var(--card);
   border: 1px solid var(--line);
@@ -205,7 +204,7 @@ nav a {
   transform: scale(1.04);
 }
 
-/* 다크 모드 대비 */
+/* Dark Mode */
 @media (prefers-color-scheme: dark) {
   .main-content {
     --card: #0b1220;
