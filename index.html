@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="index/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Qwitcher+Grypen:wght@700&display=swap" rel="stylesheet">
     <!-- Yunseul 로고 폰트 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- intro-text 폰트 -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sekuya&family=Yuji+Boku&display=swap" rel="stylesheet"> <!-- main-yunseul 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@400..700&family=Sekuya&family=Yuji+Boku&display=swap" rel="stylesheet"> <!-- main-subtitle 폰트 -->
     <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 </head>
 
@@ -36,57 +36,78 @@
                 </nav>
             </div>
         </header>
-        <section class="search-section">
-            <div class="search-box">
-                <input type="text" placeholder="Search topics...">
-                <img src="index/search.png" alt="">
+        <section class="main-section">
+            <div class="main-div">
+                <h1 class="main-title">Yunseul<span class="title-emoji">🎔</span></h1>
+                <p class="main-subtitle">Offensive Security · Web · Exploit Research</p>
+                <div class="search-box">
+                    <input type="text" placeholder="Search topics...">
+                    <img src="index/search.png" alt="">
+                </div>
             </div>
         </section>
     </section>
+    
+    <nav class="category-nav">
+        <div class="category-container">
+            <a href="#" class="category-link active" data-category="all">All posts</a>
+            <a href="#" class="category-link" data-category="projects">Projects</a>
+            <a href="#" class="category-link" data-category="web">Web Hacking</a>
+            <a href="#" class="category-link" data-category="system">System Hacking</a>
+            <a href="#" class="category-link" data-category="tools">Attack Tools</a>
+            <a href="#" class="category-link" data-category="python">Python Modules</a>
+        </div>
+    </nav>
+
     <main class="layout">
         <section class="main-content">
-            <h1>Latest Topics</h1>
             <ul class="lt__list">
                 <li class="post-card">
                     <a href="#" class="card-link">
                         <div class="thumbnail"></div>
+                        <div class="card-meta">
+                            <span class="card-category">Web Hacking</span>
+                            <span class="card-date">19 Jan 2025</span>
+                        </div>
                         <p>Test post</p>
-                        <span>1 day ago</span>
+                        <span class="card-description">test card description ♡</span>
                     </a>
                 </li>
                 <li class="post-card">
                     <a href="#" class="card-link">
                         <div class="thumbnail"></div>
+                        <div class="card-meta">
+                            <span class="card-category">System Hacking</span>
+                            <span class="card-date">19 Jan 2025</span>
+                        </div>
                         <p>Test post</p>
-                        <span>1 day ago</span>
+                        <span class="card-description">test card description ♡</span>
                     </a>
                 </li>
                 <li class="post-card">
                     <a href="#" class="card-link">
                         <div class="thumbnail"></div>
+                        <div class="card-meta">
+                            <span class="card-category">Projects</span>
+                            <span class="card-date">19 Jan 2025</span>
+                        </div>
                         <p>Test post</p>
-                        <span>1 day ago</span>
+                        <span class="card-description">test card description ♡</span>
+                    </a>
+                </li>
+                <li class="post-card">
+                    <a href="#" class="card-link">
+                        <div class="thumbnail"></div>
+                        <div class="card-meta">
+                            <span class="card-category">Attack Tools</span>
+                            <span class="card-date">19 Jan 2025</span>
+                        </div>
+                        <p>Test post</p>
+                        <span class="card-description">test card description ♡</span>
                     </a>
                 </li>
             </ul>
         </section>
-
-        <aside class="categories">
-            <h3>Categories</h3>
-            <ul>
-                <li>
-                    Web Hacking
-                    <ul class="sub-cat">
-                        <li>CVE Analysis</li>
-                        <li>Exploitation Techniques</li>
-                    </ul>
-                </li>
-                <li>System Hacking</li>
-                <li>Projects</li>
-                <li>Attack Tools</li>
-                <li>Python Modules</li>
-            </ul>
-        </aside>
     </main>
 </body>
 <script>
@@ -106,6 +127,46 @@
     });
 
     setActive('ko');
+
+    // Category navigation functionality
+    const categoryLinks = document.querySelectorAll('.category-link');
+    const postCards = document.querySelectorAll('.post-card');
+
+    categoryLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Remove active class from all links
+            categoryLinks.forEach(l => l.classList.remove('active'));
+            
+            // Add active class to clicked link
+            link.classList.add('active');
+            
+            const category = link.getAttribute('data-category');
+            
+            // Filter posts based on category
+            postCards.forEach(card => {
+                if (category === 'all') {
+                    card.style.display = 'block';
+                } else {
+                    const cardCategory = card.querySelector('.card-category').textContent.toLowerCase();
+                    const categoryMap = {
+                        'web': 'web hacking',
+                        'system': 'system hacking',
+                        'projects': 'projects',
+                        'tools': 'attack tools',
+                        'python': 'python modules'
+                    };
+                    
+                    if (cardCategory === categoryMap[category]) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        });
+    });
 </script>
 
 </html>
