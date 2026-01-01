@@ -8,8 +8,11 @@
     <link rel="stylesheet" href="index/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Qwitcher+Grypen:wght@700&display=swap" rel="stylesheet">
     <!-- Yunseul 로고 폰트 -->
-    <link href="https://fonts.googleapis.com/css2?family=Sekuya&family=Yuji+Boku&display=swap" rel="stylesheet"> <!-- main-yunseul 폰트 -->
-    <link href="https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@400..700&family=Sekuya&family=Yuji+Boku&display=swap" rel="stylesheet"> <!-- main-subtitle 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Sekuya&family=Yuji+Boku&display=swap" rel="stylesheet">
+    <!-- main-yunseul 폰트 -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@400..700&family=Sekuya&family=Yuji+Boku&display=swap"
+        rel="stylesheet"> <!-- main-subtitle 폰트 -->
     <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 </head>
 
@@ -47,14 +50,34 @@
             </div>
         </section>
     </section>
-    
+
     <nav class="category-nav">
         <div class="category-container">
             <a href="#" class="category-link active" data-category="all">All posts</a>
-            <a href="#" class="category-link" data-category="projects">Projects</a>
-            <a href="#" class="category-link" data-category="web">Web Hacking</a>
-            <a href="#" class="category-link" data-category="system">System Hacking</a>
-            <a href="#" class="category-link" data-category="tools">Attack Tools</a>
+            <div class="category-group" data-parent="projects">
+                <a href="#" class="category-link" data-category="projects">Projects</a>
+                <div class="subcategory-row">
+                    <a href="#" class="subcategory-link" data-subcategory="ad-foundation">AD Foundation</a>
+                </div>
+            </div>
+            <div class="category-group" data-parent="web">
+                <a href="#" class="category-link" data-category="web">Web Hacking</a>
+                <div class="subcategory-row">
+                    <a href="#" class="subcategory-link" data-subcategory="cve-analysis"> CVE Analysis</a>
+                </div>
+            </div>
+            <div class="category-group" data-parent="system">
+                <a href="#" class="category-link" data-category="system">System Hacking</a>
+                <div class="subcategory-row">
+                    <a href="#" class="subcategory-link" data-subcategory="cve-analysis">CVE Analysis</a>
+                </div>
+            </div>
+            <div class="category-group" data-parent="tools">
+                <a href="#" class="category-link" data-category="tools">Attack Tools</a>
+                <div class="subcategory-row">
+                    <a href="#" class="subcategory-link" data-subcategory="burpsuite">Burp Suite</a>
+                </div>
+            </div>
             <a href="#" class="category-link" data-category="python">Python Modules</a>
         </div>
     </nav>
@@ -114,6 +137,7 @@
     const switchEl = document.querySelector('.lang-switch');
     const buttons = switchEl.querySelectorAll('button');
 
+    /*
     function setActive(lang) {
         switchEl.setAttribute('data-active', lang);
         changeLanguage(lang);
@@ -127,46 +151,55 @@
     });
 
     setActive('ko');
+    */
 
-    // Category navigation functionality
     const categoryLinks = document.querySelectorAll('.category-link');
     const postCards = document.querySelectorAll('.post-card');
+
+    const categoryMap = {
+        'web': 'web hacking',
+        'system': 'system hacking',
+        'projects': 'projects',
+        'tools': 'attack tools',
+        'python': 'python modules'
+    };
+
+    function setActive(link) {
+        categoryLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+    }
+
+    function applyFilter(category) {
+        postCards.forEach(card => {
+            if (category === 'all') {
+                card.style.display = 'block';
+                return;
+            }
+
+            const cardCategory = card.querySelector('.card-category').textContent
+                .trim()
+                .toLowerCase();
+
+            card.style.display = (cardCategory === categoryMap[category]) ? 'block' : 'none';
+        });
+    }
 
     categoryLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            
-            // Remove active class from all links
-            categoryLinks.forEach(l => l.classList.remove('active'));
-            
-            // Add active class to clicked link
-            link.classList.add('active');
-            
+
             const category = link.getAttribute('data-category');
-            
-            // Filter posts based on category
-            postCards.forEach(card => {
-                if (category === 'all') {
-                    card.style.display = 'block';
-                } else {
-                    const cardCategory = card.querySelector('.card-category').textContent.toLowerCase();
-                    const categoryMap = {
-                        'web': 'web hacking',
-                        'system': 'system hacking',
-                        'projects': 'projects',
-                        'tools': 'attack tools',
-                        'python': 'python modules'
-                    };
-                    
-                    if (cardCategory === categoryMap[category]) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                }
-            });
+            setActive(link);
+            applyFilter(category);
         });
     });
+
+    const allLink = document.querySelector('.category-link[data-category="all"]');
+    if (allLink) {
+        setActive(allLink);
+        applyFilter('all');
+    }
+
 </script>
 
 </html>
