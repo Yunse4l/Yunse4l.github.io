@@ -63,13 +63,13 @@
             <div class="category-group" data-parent="web">
                 <a href="#" class="category-link" data-category="web">Web Hacking</a>
                 <div class="subcategory-row">
-                    <a href="#" class="subcategory-link" data-subcategory="cve-analysis"> CVE Analysis</a>
+                    <a href="#" class="subcategory-link" data-subcategory="web/cve-analysis"> CVE Analysis</a>
                 </div>
             </div>
             <div class="category-group" data-parent="system">
                 <a href="#" class="category-link" data-category="system">System Hacking</a>
                 <div class="subcategory-row">
-                    <a href="#" class="subcategory-link" data-subcategory="cve-analysis">CVE Analysis</a>
+                    <a href="#" class="subcategory-link" data-subcategory="system/cve-analysis">CVE Analysis</a>
                 </div>
             </div>
             <div class="category-group" data-parent="tools">
@@ -78,7 +78,26 @@
                     <a href="#" class="subcategory-link" data-subcategory="burpsuite">Burp Suite</a>
                 </div>
             </div>
-            <a href="#" class="category-link" data-category="python">Python Modules</a>
+            <div class="category-group" data-parent="mitre">
+                <a href="#" class="category-link" data-category="mitre">MITRE ATT&CK</a>
+                <div class="subcategory-row">
+                    <a href="#" class="subcategory-link" data-subcategory="Reconnaissance">Reconnaissance</a>
+                    <a href="#" class="subcategory-link" data-subcategory="Resource Development">Resource Development</a>
+                    <a href="#" class="subcategory-link" data-subcategory="Initial Access">Initial Access</a>
+                    <a href="#" class="subcategory-link" data-subcategory="Execution">Execution</a>
+                    <a href="#" class="subcategory-link" data-subcategory="Persistence">Persistence</a>
+                    <a href="#" class="subcategory-link" data-subcategory="Privilege Escalation">Privilege Escalation</a>
+                    <a href="#" class="subcategory-link" data-subcategory="Defense Evasion">Defense Evasion</a>
+                    <a href="#" class="subcategory-link" data-subcategory="Credential Access">Credential Access</a>
+                    <a href="#" class="subcategory-link" data-subcategory="Discovery">Discovery</a>
+                    <a href="#" class="subcategory-link" data-subcategory="Lateral Movement">Lateral Movement</a>
+                    <a href="#" class="subcategory-link" data-subcategory="Collection">Collection</a>
+                    <a href="#" class="subcategory-link" data-subcategory="Command and Control">Command and Control</a>
+                    <a href="#" class="subcategory-link" data-subcategory="Exfiltration">Exfiltration</a>
+                    <a href="#" class="subcategory-link" data-subcategory="Impact">Impact</a>
+                </div>
+            </div>
+            <a href="#" class="category-link" data-category="programming">Language</a>
         </div>
     </nav>
 
@@ -154,6 +173,7 @@
     */
 
     const categoryLinks = document.querySelectorAll('.category-link');
+    const subcategoryLinks = document.querySelectorAll('.subcategory-link');
     const postCards = document.querySelectorAll('.post-card');
 
     const categoryMap = {
@@ -161,11 +181,13 @@
         'system': 'system hacking',
         'projects': 'projects',
         'tools': 'attack tools',
-        'python': 'python modules'
+        'mitre': 'mitre att&ck',
+        'programming': 'language'
     };
 
     function setActive(link) {
         categoryLinks.forEach(l => l.classList.remove('active'));
+        subcategoryLinks.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
     }
 
@@ -176,11 +198,15 @@
                 return;
             }
 
-            const cardCategory = card.querySelector('.card-category').textContent
-                .trim()
-                .toLowerCase();
-
+            const cardCategory = card.querySelector('.card-category').textContent.trim().toLowerCase();
             card.style.display = (cardCategory === categoryMap[category]) ? 'block' : 'none';
+        });
+    }
+
+    function applySubcategoryFilter(subcategory) {
+        postCards.forEach(card => {
+            const cardSub = (card.dataset.subcategory || '').trim().toLowerCase();
+            card.style.display = (cardSub === subcategory.trim().toLowerCase()) ? 'block' : 'none';
         });
     }
 
@@ -191,6 +217,16 @@
             const category = link.getAttribute('data-category');
             setActive(link);
             applyFilter(category);
+        });
+    });
+
+    subcategoryLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const subcategory = link.getAttribute('data-subcategory');
+            setActive(link);
+            applySubcategoryFilter(subcategory);
         });
     });
 

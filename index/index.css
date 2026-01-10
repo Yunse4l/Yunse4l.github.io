@@ -330,21 +330,15 @@ nav a:hover {
   max-height: 0;
   overflow: hidden;
   margin-top: 0;
-  transition: max-height 220ms ease, margin-top 220ms ease;
-  width: max-content;
-}
-
-.subcategory-row{
-  max-height: 0;
-  overflow: hidden;
-  margin-top: 0;
-  transition:
-    max-height 220ms ease 140ms,
-    margin-top 220ms ease 140ms;
+  transition: max-height 220ms ease 120ms, margin-top 220ms ease 120ms;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .subcategory-link{
-  display: inline-block;
+  display: block;
   padding: 10px 20px;
   border-radius: 8px;
   font-size: 15px;
@@ -357,12 +351,6 @@ nav a:hover {
   opacity: 0;
   transform: translateY(-6px);
   transition: opacity 180ms ease, transform 180ms ease, background 0.2s ease;
-}
-
-.category-group:hover .subcategory-row,
-.category-group:focus-within .subcategory-row{
-  max-height: 60px;
-  margin-top: 6px;
 }
 
 .category-group:hover .subcategory-link,
@@ -378,11 +366,9 @@ nav a:hover {
 .category-group:hover .subcategory-row,
 .category-group:focus-within .subcategory-row,
 .category-group.open .subcategory-row{
-  max-height: 60px;
+  max-height: 500px;
   margin-top: 6px;
-  transition:
-    max-height 220ms ease 0ms,
-    margin-top 220ms ease 0ms;
+  transition: max-height 220ms ease 0ms, margin-top 220ms ease 0ms;
 }
 
 /* ===== Main Layout ===== */
