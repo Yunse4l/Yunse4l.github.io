@@ -10,9 +10,7 @@
     <!-- Yunseul 로고 폰트 -->
     <link href="https://fonts.googleapis.com/css2?family=Sekuya&family=Yuji+Boku&display=swap" rel="stylesheet">
     <!-- main-yunseul 폰트 -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@400..700&family=Sekuya&family=Yuji+Boku&display=swap"
-        rel="stylesheet"> <!-- main-subtitle 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@400..700&family=Sekuya&family=Yuji+Boku&display=swap" rel="stylesheet"> <!-- main-subtitle 폰트 -->
     <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 </head>
 
@@ -30,7 +28,8 @@
                     <a href="index.html" class="logo__text">Yunseul</a>
                 </div>
                 <nav>
-                    <a href="/about.html">About Me</a>
+                    <a href="#">Contact</a>
+                    <a href="#">About Me</a>
                     <div class="lang-switch" data-active="ko" aria-label="Language toggle">
                         <button type="button" data-lang="ko">Korean</button>
                         <button type="button" data-lang="en">English</button>
@@ -104,15 +103,17 @@
     <main class="layout">
         <section class="main-content">
             <ul class="lt__list">
-                <li class="post-card">
-                    <a href="#" class="card-link">
-                        <div class="thumbnail"></div>
+                <li class="post-card" data-subcategory="web/cve-analysis">
+                    <a href="posts/web/cve-analysis/ejs_ssti_analysis.html" class="card-link">
+                        <div class="thumbnail">
+                            <img src="assets/ejs_ssti.png" alt="esj 3.1.x ssti 취약점 분석 썸네일">
+                        </div>
                         <div class="card-meta">
                             <span class="card-category">Web Hacking</span>
-                            <span class="card-date">19 Jan 2025</span>
+                            <span class="card-date">17 Jan 2026</span>
                         </div>
-                        <p>Test post</p>
-                        <span class="card-description">test card description ♡</span>
+                        <p>ejs 3.1.x SSTI 취약점 정리 (CVE-2022-29078)</p>
+                        <span class="card-description">ejs SSTI 취약점 분석</span>
                     </a>
                 </li>
                 <li class="post-card">
