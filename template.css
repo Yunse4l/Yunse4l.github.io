@@ -271,6 +271,54 @@ h2[id] {
   margin: 0px 3px 0px 0px;
 }
 
+/* ===== article table ===== */
+
+.article table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  margin: 20px 0;
+  font-size: 16px;
+  border: 1px solid #d9d9d9;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.article th,
+.article td {
+  padding: 12px 18px;
+  text-align: left;
+  border-bottom: 1px solid #e3e3e3;
+  border-right: 1px solid #e3e3e3;
+}
+
+.article th:last-child,
+.article td:last-child {
+  border-right: 0;
+}
+
+/* ===== article table ===== */
+
+.article th {
+  background: #f2f2f2;
+  color: #565658;
+  font-weight: 600;
+}
+
+.article td {
+  color: #0f172a;
+}
+
+.article tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.article tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* ===== article table ===== */
+
 .infocard {
   border: 1px solid #d9d9d9;
   border-radius: 14px;
